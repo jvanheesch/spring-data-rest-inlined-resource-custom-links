@@ -1,15 +1,16 @@
 package com.github.jvanheesch;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-public class Engine {
+public class EnginePart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @OneToOne
-    private EnginePart enginePart;
 
     public Long getId() {
         return id;
@@ -25,13 +26,5 @@ public class Engine {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public EnginePart getEnginePart() {
-        return enginePart;
-    }
-
-    public void setEnginePart(EnginePart enginePart) {
-        this.enginePart = enginePart;
     }
 }

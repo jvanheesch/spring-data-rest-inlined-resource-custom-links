@@ -9,6 +9,8 @@ import javax.annotation.PostConstruct;
 @SpringBootApplication
 public class Application {
     @Autowired
+    private EnginePartRepository enginePartRepository;
+    @Autowired
     private EngineRepository engineRepository;
     @Autowired
     private CarRepository carRepository;
@@ -19,8 +21,12 @@ public class Application {
 
     @PostConstruct
     public void init() {
+        EnginePart enginePart = new EnginePart();
+        enginePart.setName("enginePartName");
+        enginePart = this.enginePartRepository.save(enginePart);
         Engine engine = new Engine();
         engine.setName("engineName");
+        engine.setEnginePart(enginePart);
         engine = this.engineRepository.save(engine);
         Car car = new Car();
         car.setName("carName");
